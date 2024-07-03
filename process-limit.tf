@@ -6,8 +6,8 @@ locals {
 }
 
 module "process_limit" {
-  source  = "kabisa/generic-monitor/datadog"
-  version = "1.0.0"
+  source  = "weglot/generic-monitor/datadog"
+  version = "1.1.0"
 
   name             = "PHP-FPM - Process limit"
   query            = "sum(${var.process_limit_evaluation_period}):sum:php_fpm.processes.max_reached{${local.process_limit_filter}} by {host,service}.as_count() > ${var.process_limit_critical}"
@@ -22,6 +22,7 @@ module "process_limit" {
   additional_tags      = var.additional_tags
   name_prefix          = var.name_prefix
   name_suffix          = var.name_suffix
+  restricted_roles     = var.restricted_roles
 
   # monitor level vars
   enabled            = var.process_limit_enabled
