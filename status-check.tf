@@ -1,6 +1,6 @@
 module "status-check" {
-  source  = "kabisa/service-check-monitor/datadog"
-  version = "2.0.0"
+  source  = "weglot/service-check-monitor/datadog"
+  version = "2.1.0"
 
   name        = "PHP-FPM - Status check"
   metric_name = "php_fpm.can_ping"
@@ -23,6 +23,7 @@ module "status-check" {
   additional_tags      = var.additional_tags
   name_prefix          = var.name_prefix
   name_suffix          = var.name_suffix
+  restricted_roles     = var.restricted_roles
 
   # monitor level vars
   enabled            = var.status_check_enabled
